@@ -30,7 +30,7 @@ This function generates a data set according to the model of the simulation stud
 >- `beta` is the coefficient of the non-image covariate `Z`
 >- `gamma` is the coefficient of the image covariates
 >- `rho` is the transformation parameter, set to be 0, 0.5, or 1 in the study
->- `pattern` is a vector containing the indexes of the triangles to be selected, with length less than or equal to `nrow(VT$Tr)`
+>- `pattern` is a vector containing the (unique) indexes of the triangles to be selected, with length less than or equal to `nrow(VT$Tr)`
 
 Example:
 ```
