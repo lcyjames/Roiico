@@ -1,5 +1,5 @@
 # Roiico
-Roiico (which stands for Identifying <ins>**Regions of interest**</ins> in imaging data based on <ins>**interval-censored outcomes**</ins>) is a package that performs semiparametric estimation of the group penalized regression for images with irregular boundaries and interval-censored outcomes proposed in Lee et al. (2024+). It requires both `BPST` and `Triangulation` [packages](https://first-data-lab.github.io/blogs/docs/BPST.html#few-notes-to-consider) in `R`.
+Roiico (which stands for Identifying <ins>**Regions of interest**</ins> in imaging data based on <ins>**interval-censored outcomes**</ins>) is a package that performs semiparametric estimation of the group penalized regression for images with irregular boundaries and interval-censored outcomes proposed in Lee et al. (2024+). It requires [BPST package](https://first-data-lab.github.io/blogs/docs/BPST.html#few-notes-to-consider) in `R`.
 
 # How to import the Functions #
 > install.packages("devtools")<br />
@@ -34,7 +34,7 @@ This function generates a data set according to the model of the simulation stud
 
 Example:
 ```
-#This is the setting in Scenario I
+#This is the setting with sample size `n` = 500, number of triangles `M` = 62, and `rho` = 0
 Data <- RoiicoSIM(seed = 1234, n = 500, gamma = 0.5, beta = -1, alpha1 = 2, alpha2 = 1.5, mu = 1.5, sigma = 0.5)
 head(Data)
 
