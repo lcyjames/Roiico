@@ -1,5 +1,5 @@
 # Roiico
-Roiico (which stands for Identifying <ins>**Regions of interest**</ins> in imaging data based on <ins>**interval-censored outcomes**</ins>ival outcome) is a package that performs semiparametric estimation of the group penalized regression for images with irregular boundaries and interval-censored outcomes proposed in Lee et al. (2024+).
+Roiico (which stands for Identifying <ins>**Regions of interest**</ins> in imaging data based on <ins>**interval-censored outcomes**</ins>) is a package that performs semiparametric estimation of the group penalized regression for images with irregular boundaries and interval-censored outcomes proposed in Lee et al. (2024+).
 
 # How to import the Functions #
 > install.packages("devtools")<br />
