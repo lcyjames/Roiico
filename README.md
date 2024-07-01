@@ -14,6 +14,10 @@ The package contains 2 functions:
 RoiicoSIM  | Generate a data set according to the simulation study in Lee et al. (2024+)
 RoiicoEST  | Perform the semiparametric estimation methods of Lee et al. (2024+)
 
+|Rds file  | Description|
+|------------- | -------------|
+VT62.Rds | It contains the triangulation grids with object VT
+
 <ins>**RoiicoSIM**</ins>
 
 ```
