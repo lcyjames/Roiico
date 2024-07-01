@@ -19,7 +19,7 @@ RoiicoEST  | Perform the semiparametric estimation methods of Lee et al. (2024+)
 ```
 RoiicoSIM(seed=NA, n, gamma, beta, alpha1, alpha2, mu, sigma)
 ```
-This function generates a data set according to the model of the simulation study in Lee and Wong (2023+) that takes the arguments:
+This function generates a data set according to the model of the simulation study in Lee et al. (2024+). It requires the [BPST](https://first-data-lab.github.io/blogs/docs/BPST.html#few-notes-to-consider) package in `R`. The function takes the arguments:
 >- `n` is the sample size
 >- `gamma` is the coefficient of X
 >- `beta` is the 'baseline' coefficient of Z
