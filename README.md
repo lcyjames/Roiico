@@ -16,7 +16,8 @@ RoiicoEST  | Perform the semiparametric estimation methods of Lee et al. (2024+)
 
 |Rds file  | Description|
 |------------- | -------------|
-VT62.Rds | It records the triangulation grids with 62 triangles stored in an object `VT`, where `VT$V` pertains to the vertices, `VT$Tr` pertains to which vertices are used to form the triangles, and `VT$Z_grid` contains all the `(x,y)` coordinates of the dots sampled within the boundaries
+VT62.Rds | It records the triangulation grids with 62 triangles stored in an object `VT`, where `VT$V` pertains to the vertices, `VT$Tr` pertains to which vertices are used to form the triangles, and `VT$Z_grid` contains all the `(x,y)` coordinates of the dots sampled within the boundaries.
+VT118.Rds | It shares a similar structure with VT62.Rds, but comprises 118 triangles instead of 62.
 
 <ins>**RoiicoSIM**</ins>
 
