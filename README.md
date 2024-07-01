@@ -11,13 +11,13 @@ Roiico (which stands for Identifying <ins>**Regions of interest**</ins> in imagi
 The package contains 2 functions:
 |Functions  | Description|
 |------------- | -------------|
-RCPsurvSIM  | Generate a data set according to the simulation study in Lee and Wong. (2023+)
-RCPsurvEST  | Perform the semiparametric estimation methods of Lee and Wong. (2023+)
+RoiicoSIM  | Generate a data set according to the simulation study in Lee et al. (2024+)
+RoiicoEST  | Perform the semiparametric estimation methods of Lee et al. (2024+)
 
-<ins>**RCPsurvSIM**</ins>
+<ins>**RoiicoSIM**</ins>
 
 ```
-RCPsurvSIM(seed=NA, n, gamma, beta, alpha1, alpha2, mu, sigma)
+RoiicoSIM(seed=NA, n, gamma, beta, alpha1, alpha2, mu, sigma)
 ```
 This function generates a data set according to the model of the simulation study in Lee and Wong (2023+) that takes the arguments:
 >- `n` is the sample size
@@ -31,7 +31,7 @@ This function generates a data set according to the model of the simulation stud
 Example:
 ```
 #This is the setting in Scenario I
-Data <- RCPsurvSIM(seed = 1234, n = 500, gamma = 0.5, beta = -1, alpha1 = 2, alpha2 = 1.5, mu = 1.5, sigma = 0.5)
+Data <- RoiicoSIM(seed = 1234, n = 500, gamma = 0.5, beta = -1, alpha1 = 2, alpha2 = 1.5, mu = 1.5, sigma = 0.5)
 head(Data)
 
 #   id          Yi cen            X        Z
@@ -50,10 +50,10 @@ This data structure is as follows:
 >- `X` is the non-change-point covariate, which can have multiple columns
 >- `Z` is the univariate change-point variable
 
-<ins>**RCPsurvEST**</ins>
+<ins>**RoiicoEST**</ins>
 
 ```
-RCPsurvEST(data, P, m=10, tolerance=10^{-3}, gamma0=NA, beta0=NA, alpha10=NA, alpha20=NA, mu0=NA, sigma0=NA, TRACE=FALSE)
+RoiicoEST(data, P, m=10, tolerance=10^{-3}, gamma0=NA, beta0=NA, alpha10=NA, alpha20=NA, mu0=NA, sigma0=NA, TRACE=FALSE)
 ```
 This function performs the semiparametric estimation methods of Lee and Wong (2023+). The details of the arguments are as follows:
 >- `data` is a data.frame object shown in the above, with columns `id`, `Yi`, `cen`, `X[1]`,...,`X[P]`, `Z`
@@ -70,8 +70,8 @@ This function performs the semiparametric estimation methods of Lee and Wong (20
 
 Example:
 ```
-Data<-RCPsurvSIM(seed = 1234, n = 500, gamma = 0.5, beta = -1, alpha1 = 2, alpha2 = 1.5, mu = 1.5, sigma = 0.5)
-Result <-RCPsurvEST(data = Data, P = 1, gamma0 = 0.5, beta0 = -1, alpha10 = 2, alpha20 = 1.5, mu0 = 1.5, sigma0 = 0.5,TRACE = F)
+Data<-RoiicoSIM(seed = 1234, n = 500, gamma = 0.5, beta = -1, alpha1 = 2, alpha2 = 1.5, mu = 1.5, sigma = 0.5)
+Result <-RoiicoEST(data = Data, P = 1, gamma0 = 0.5, beta0 = -1, alpha10 = 2, alpha20 = 1.5, mu0 = 1.5, sigma0 = 0.5,TRACE = F)
 Result
 
 # $loglik
