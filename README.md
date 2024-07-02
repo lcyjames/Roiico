@@ -74,7 +74,7 @@ This function performs the semiparametric estimation methods of Lee et al (2024+
 >- `deg2` is the degree of the I-spline basis functions for the approximation of the cumulative hazard function, set to be 3 by default
 >- `J` is the dimension of parameter `omega`; the order of the I-splines equal to `(J-deg2+1)`; `J` must be greater than or equal to `deg2`
 >- `tolerance` is the stopping criterion for the EM algorithm, set to 10^{-4} by default
->- `lambda.grid` is a vector of candidate tunning parameter values for penalty term `lambda`
+>- `lambda.grid` is a vector of candidate tunning parameter values for penalty term `lambda`, set to 10^seq(6,-6,-0.1) by default
 >- `TRACE` is an option for tracking the solution path of the parameter estimation, set to FALSE by default
 
 Example:
