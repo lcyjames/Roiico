@@ -36,7 +36,7 @@ This function generates a data set according to the model of the simulation stud
 Example:
 ```
 #This is the setting with sample size 500, number of triangles 62, and transformation parameter = 0
-VT   <-readRDS("VT62.rds")
+VT   <-readRDS(gzcon(url("https://github.com/lcyjames/Roiico/blob/main/VT62.Rds?raw=TRUE")))
 Data <-RoiicoSIM(seed = 1234, n = 500, a = 0.05, beta = c(0.5,-0.5), gamma = c(0.1,0.2,0.3,0.5,0.6,0.4), rho = 0, VT = VT, pattern = c(50,26,25,9,8,7))
 
 head(Data$surv.data)
