@@ -27,7 +27,7 @@ RoiicoSIM(seed = NA, n, deg = 2, a, beta, gamma, rho, VT, pattern)
 This function generates a data set according to the model of the simulation study in Lee et al. (2024+) that takes the following arguments:
 >- `n` is the sample size
 >- `deg` is the degree of the Bernstein polynomial basis functions over triangulation, set to be 2 by default 
->- `a` is the proportion of triangles associated with the survival outcomes, set to be 0.01, 0.05, or 0.1 in the study
+>- `a` is the proportion of triangles associated with the survival outcomes, set to be 0.025, 0.05, or 0.1 in the study
 >- `beta` is the coefficient of the non-image covariates `Z`
 >- `gamma` is the non-zero coefficient of the image covariates of length `(deg+2)choose(2)` which is common to all selected triangles
 >- `rho` is the transformation parameter, set to be 0, 0.5, or 1 in the study
