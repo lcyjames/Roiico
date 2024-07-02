@@ -5,8 +5,7 @@ Roiico (which stands for Identifying <ins>**Regions of interest**</ins> in imagi
 > install.packages("devtools")<br />
 > library(devtools) <br /> 
 > library(BPST) <br />
-> source_url("https://github.com/lcyjames/RCPsurv/blob/main/RCPsurv.R?raw=TRUE")
-
+> source_url("https://github.com/lcyjames/Roiico/blob/main/Roiico.R?raw=TRUE")
 
 # Usage #
 The package contains 2 functions:
