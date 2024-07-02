@@ -309,7 +309,7 @@ RoiicoEST<-function(Yi, Zi, Li, Ri, DL, DI, rho, VT, deg1 = 2, deg2 = 3, J = 7, 
           tot<-tot+1
           conv<-0
           selected<-apply(abs(matrix(gam.d,nrow=numTr,byrow=T))>0,1,prod)
-          tri.selected.lambda[[H]] <- c(lambda[H], selected)
+          tri.selected.lambda[[H]] <- which(selected==1)
           if(TRACE==TRUE){print(round(c(H,lambda,conv,DFg,obs.like2,AIC),3))}
           Store.H <-rbind(Store.H,c(selected, lambda, obs.like1, AIC, DFg))
           break
@@ -323,10 +323,5 @@ RoiicoEST<-function(Yi, Zi, Li, Ri, DL, DI, rho, VT, deg1 = 2, deg2 = 3, J = 7, 
   opt.Store.AIC    <-Store.H.df[which.min(Store.H.df$AIC),]
   opt.select.AIC   <-which(opt.Store.AIC[1:numTr]==1)
   
-  return(list(selected=opt.select.AIC, AIC.lambda=Store.H.df$AIC, opt.lambda=Store.H.df$lambda, tri.selected.lambda=tri.selected.lambda, lambda=lambda.grid))
+  return(list(selected=opt.select.AIC, AIC.lambda=Store.H.df$AIC, opt.lambda=opt.Store.AIC$lambda, tri.selected.lambda=tri.selected.lambda, lambda=lambda.grid))
 }
-
-
-
-
-
