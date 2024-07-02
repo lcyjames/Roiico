@@ -66,10 +66,10 @@ RoiicoEST(Yi, Zi, Li, Ri, DL, DI, rho, VT, deg1 = 2, deg2 = 3, J = 7, tolerance 
 This function performs the semiparametric estimation methods of Lee et al (2024+). The details of the arguments are as follows:
 >- `Yi` is a matrix shown above, referring to the structure in `Data$Y.data`, with the number of rows = `n` and the number of columns = total number of dots sampled within the boundaries
 >- `Zi` is a matrix of non-image covariates with the number of rows = `n` and the number of columns = number of non-image covariates
->- `Li` is a vector of left-endpoints of the intervals, which takes `0` for left-censored subjects
->- `Ri` is a vector of right-endpoints of the intervals, which takes `Inf` for right-censored subjects
->- `DL` is the left-censoring indicator
->- `DI` is the interval-censoring indicator
+>- `Li` is a vector of left-endpoints of the intervals with length `n`, which takes `0` for left-censored subjects; 
+>- `Ri` is a vector of right-endpoints of the intervals with length `n`, which takes `Inf` for right-censored subjects
+>- `DL` is the left-censoring indicator with length `n`
+>- `DI` is the interval-censoring indicator with length `n`
 >- `rho` is the transformation parameter, typically set to be 0, 0.5, or 1
 >- `deg1` is the degree of the Bernstein polynomial basis functions over triangulation, set to be 2 by default
 >- `deg2` is the degree of the I-spline basis functions for the approximation of the cumulative hazard function, set to be 3 by default
