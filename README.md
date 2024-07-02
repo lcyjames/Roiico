@@ -32,7 +32,7 @@ This function generates a data set according to the model of the simulation stud
 >- `beta` is the coefficient of the non-image covariates `Z`
 >- `gamma` is the non-zero coefficient of the image covariates of length `(deg+2)choose(2)` which is common to all selected triangles
 >- `rho` is the transformation parameter, set to be 0, 0.5, or 1 in the study
->- `pattern` is a vector containing the (unique) indexes of the triangles to be selected, with length less than or equal to `nrow(VT$Tr)`
+>- `pattern` is a vector containing the (unique) indexes of the triangles to be selected, with length less than or equal to `nrow(VT$Tr)`. A total number of floor(`nrow(VT$Tr)` times `a`) triangles will be selected beginning with the first element of `pattern`.
 
 Example:
 ```
@@ -53,40 +53,42 @@ head(Data$selected.true)
 #[1] 50 26 25
 ```
 
-This data structure is as follows:
+The data structure is as follows:
 >- `Data$Y.data` is a matrix with the rows referring to subjects, and the columns referring to the pixel values of the sampled dots within the boundaries
->- `Data$surv.data` is a matrix which contains `Li`: left-endpoint of the interval, `Ri`: right-endpoint of the interval, `DL`: left-censoring indicator, `DI`: interval-censoring indicator; `Z1` and `Z2` are the non-image covariates
+>- `Data$surv.data` is a data frame which contains `Li`: left-endpoint of the interval, `Ri`: right-endpoint of the interval, `DL`: left-censoring indicator, `DI`: interval-censoring indicator; `Z1` and `Z2` are the non-image covariates
 >- `Data$selected.true` indexes which triangles are associated with the survival outcome
 
-<ins>**RoiicoEST**</ins>
 
+<ins>**RoiicoEST**</ins>
 ```
 RoiicoEST(Yi, Zi, Li, Ri, DL, DI, rho, VT, deg1 = 2, deg2 = 3, J = 7, tolerance = 10^{-4}, lambda.grid = 10^seq(6,-6,-0.1), TRACE = FALSE)
 ```
 This function performs the semiparametric estimation methods of Lee et al (2024+). The details of the arguments are as follows:
 >- `Yi` is a matrix shown above, referring to the structure in `Data$Y.data`, with the number of rows = `n` and the number of columns = total number of dots sampled within the boundaries
->- `Zi` is the covariate matrix with the number of rows = `n` and the number of columns = number of covariates 
->- `m` is the number of nodes used in the Gaussian quadrature rule for truncated normal distributions
->- `tolerance` is the stopping criterion for the EM algorithm, set to 10^{-3} by default
->- `gamma0` is a vector of constants of size `P` for the initial values of parameter γ, set to rep(0,P) by default (gamma0=NA)
->- `beta0` is a constant for the initial value of parameter β, set to 0 by default (beta0=NA)
->- `alpha10` is a constant for the initial value of parameter α<sub>1</sub>, set to 0 by default (alpha10=NA)
->- `alpha20` is a constant for the initial value of parameter α<sub>2</sub>, set to 0 by default (alpha20=NA)
->- `mu0` is a constant for the initial value of parameter μ, set to be the median of `Z` in `data` by default (mu0=NA)
->- `sigma0` is a constant for the initial value of parameter σ, set to 2 by default (sigma0=NA)
->- `TRACE` is an option for tracking the converging path of the parameter estimation, set to FALSE by default
+>- `Zi` is a matrix of non-image covariates with the number of rows = `n` and the number of columns = number of non-image covariates
+>- `Li` is a vector of left-endpoints of the intervals, which takes `0` for left-censored subjects
+>- `Ri` is a vector of right-endpoints of the intervals, which takes `Inf` for right-censored subjects
+>- `DL` is the left-censoring indicator
+>- `DI` is the interval-censoring indicator
+>- `rho` is the transformation parameter, typically set to be 0, 0.5, or 1
+>- `deg1` is the degree of the Bernstein polynomial basis functions over triangulation, set to be 2 by default
+>- `deg2` is the degree of the I-spline basis functions for the approximation of the cumulative hazard function, set to be 3 by default
+>- `J` is the dimension of parameter `omega`; the order of the I-splines equal to `(J-deg2+1)`; `J` must be greater than or equal to `deg2`
+>- `tolerance` is the stopping criterion for the EM algorithm, set to 10^{-4} by default
+>- `lambda.grid` is a vector of candidate tunning parameter values for penalty term `lambda`
+>- `TRACE` is an option for tracking the solution path of the parameter estimation, set to FALSE by default
 
 Example:
 ```
 VT   <-readRDS("VT62.rds")
 Data <-RoiicoSIM(seed = 1234, n = 500, a = 0.05, VT = VT, beta = c(0.5,-0.5), gamma = c(0.1,0.2,0.3,0.5,0.6,0.4), rho = 0, pattern = c(50,26,25,9,8,7))
 Result<-RoiicoEST(Yi = Data$Y.data, Zi = cbind(Data$surv.data$Z1, Data$surv.data$Z2), Li = Data$surv.data$Li, Ri = Data$surv.data$Ri, 
-                  DL = Data$surv.data$DL, DI = Data$surv.data$DI, rho = 0, VT = VT, 
-                  tolerance = 10^{-3}, lambda.grid = 10^seq(3, 0.5, length.out=100), TRACE = TRUE)
+                  DL = Data$surv.data$DL, DI = Data$surv.data$DI, rho = 0, VT = VT, tolerance = 10^{-3}, lambda.grid = 10^seq(3, 0.5, length.out=100), TRACE = TRUE)
 Result
+#$selected
+#[1] 25 26 50
 
 ```
-
 # Contact #
 Lee Chun Yin, James <<james-chun-yin.lee@polyu.edu.hk>>
 
