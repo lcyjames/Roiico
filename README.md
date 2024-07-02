@@ -83,11 +83,16 @@ VT   <-readRDS(gzcon(url("https://github.com/lcyjames/Roiico/blob/main/VT62.Rds?
 Data <-RoiicoSIM(seed = 1234, n = 500, a = 0.05, VT = VT, beta = c(0.5,-0.5), gamma = c(0.1,0.2,0.3,0.5,0.6,0.4), rho = 0, pattern = c(50,26,25,9,8,7))
 DS<-Data$surv.data
 Result <- RoiicoEST(Yi = Data$Y.data, Zi = cbind(DS$Z1, DS$Z2), Li = DS$Li, Ri = DS$Ri, DL = DS$DL, DI = DS$DI, rho = 0, VT = VT, tolerance = 10^{-3}, lambda.grid = 10^seq(3, 0.5, length.out=100), TRACE = TRUE)
-Result
-#Result$selected
+
+Result$selected
 #[1] 25 26 50
 
+plot(Result$lambda,Result$AIC.lambda, type="l", lwd=2, col="red", xlim=c(0,500),
+     xlab=expression(paste(lambda)), ylab=expression(paste("AIC(",lambda,")")))
+abline(v = Result$opt.lambda, lty=2)
 ```
+<img src="https://github.com/lcyjames/Roiico/blob/main/example.png" width="600"/>
+
 # Contact #
 Lee Chun Yin, James <<james-chun-yin.lee@polyu.edu.hk>>
 
