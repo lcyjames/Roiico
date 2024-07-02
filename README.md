@@ -35,24 +35,27 @@ This function generates a data set according to the model of the simulation stud
 Example:
 ```
 #This is the setting with sample size `n` = 500, number of triangles `M` = 62, and `rho` = 0
-Data <- RoiicoSIM(seed = 1234, n = 500, gamma = 0.5, beta = -1, alpha1 = 2, alpha2 = 1.5, mu = 1.5, sigma = 0.5)
-head(Data)
+library(MASS)
+library(BPST)
+VT   <-readRDS("VT62.rds")
+Data <-RoiicoSIM(seed = 1234, n = 500, a = 0.05, VT = VT, beta = c(0.5,-0.5), gamma = c(0.1,0.2,0.3,0.5,0.6,0.4), rho = 0, pattern = c(50,26,25,9,8,7))
+head(Data$surv.data)
+#  id       Li        Ri DL DI Z1         Z2
+#1  1 1.700018 2.6307966  0  1  0 -0.1202458
+#2  2 0.000000 0.9046819  1  0  1  0.1724521
+#3  3 3.000000       Inf  0  0  1 -0.1113737
+#4  4 0.000000 0.2796044  1  0  0 -0.2530162
+#5  5 3.000000       Inf  0  0  0 -1.9084928
+#6  6 3.000000       Inf  0  0  1  0.5512539
 
-#   id          Yi cen            X        Z
-# 1  1 0.004496932   0  1.334176034 1.435799
-# 2  2 0.015786129   1 -1.121502497 3.819158
-# 3  3 0.026820595   1  1.674326510 3.091647
-# 4  4 0.026929615   0 -0.005234058 0.540405
-# 5  5 0.030748594   1  0.011925135 3.015005
-# 6  6 0.039647808   1  0.129085401 3.971592
+head(Data$selected.true)
+#[1] 50 26 25
 ```
 
 This data structure is as follows:
->- `id` is the sample identifier
->- `Yi` is the exact failure time or censoring time
->- `cen` is the right-censoring indicator
->- `X` is the non-change-point covariate, which can have multiple columns
->- `Z` is the univariate change-point variable
+>- `Data$Y.data` is a matrix with the rows referring to subjects, and the columns referring to the pixel values of the sampled dots within the boundaries
+>- `Data$surv.data` is a matrix which contains `Li`: left-endpoint of the interval, `Ri`: right-endpoint of the interval, `DL`: left-censoring indicator, `DI`: interval-censoring indicator, `Z1` and `Z2` are the non-image covariates
+>- `Data$selected.true` indicates the index of triangles associated with the survival outcome
 
 <ins>**RoiicoEST**</ins>
 
