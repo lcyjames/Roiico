@@ -50,7 +50,7 @@ head(Data$surv.data)
 #6  6 3.000000       Inf  0  0  1  0.5512539
 
 head(Data$selected.true)
-#[1] 50 26 25
+#[1] 25 26 50
 ```
 
 The data structure is as follows:
