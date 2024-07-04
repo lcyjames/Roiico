@@ -48,7 +48,7 @@ head(Data$surv.data)
 #5  5 3.000000       Inf  0  0  0 -1.9084928
 #6  6 3.000000       Inf  0  0  1  0.5512539
 
-head(Data$selected.true)
+Data$selected.true
 #[1] 25 26 50
 ```
 
